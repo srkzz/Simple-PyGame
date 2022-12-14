@@ -3,7 +3,7 @@ from sys import exit
 
 
 def display_score():
-    current_time = pygame.time.get_ticks() - tempo_inicio
+    current_time = int(pygame.time.get_ticks() / 1000) - tempo_inicio
     score_surf = test_font.render(f'SCORE: {current_time}', False, (64, 64, 64))
     score_rect = score_surf.get_rect(center=(400, 50))
     screen.blit(score_surf, score_rect)
@@ -48,7 +48,7 @@ while True:
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
-                tempo_inicio = pygame.time.get_ticks()
+                tempo_inicio = int(pygame.time.get_ticks() / 1000)
 
         # if event.type == pygame.MOUSEMOTION:
         #   print(event.pos) , outra função para mouse tracking
@@ -88,6 +88,7 @@ while True:
         screen.fill('Black')
         screen.blit(restart_surf, restart_rect)
         if snail_rect.colliderect(player_rect): snail_rect.left = 800
+
 
     pygame.display.update()
     clock.tick(60)
